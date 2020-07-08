@@ -1,11 +1,10 @@
 const withSourceMaps = require('@zeit/next-source-maps')();
-const { execSync } = require("child_process");
 const SentryCliPlugin = require('@sentry/webpack-plugin');
 
 module.exports = withSourceMaps({
   env: {
-    dsn: process.env.dsn,
-    release: execSync('git rev-parse HEAD').toString()
+    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+    release: process.env.VERCEL_GITHUB_COMMIT_SHA
   },
   webpack(config, options) {
     // https://github.com/getsentry/sentry-javascript/issues/2378
@@ -21,7 +20,7 @@ module.exports = withSourceMaps({
         include: '.next',
         ignore: ['node_modules'],
         urlPrefix: '~/_next',
-        release: execSync('git rev-parse HEAD').toString()
+        release: process.env.VERCEL_GITHUB_COMMIT_SHA
       })
     )
     return config
