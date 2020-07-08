@@ -4,7 +4,7 @@ const SentryCliPlugin = require('@sentry/webpack-plugin');
 
 module.exports = withSourceMaps({
   env: {
-    dsn: "https://fcc41a1fbc214647a0d72fdc2384b526@o139230.ingest.sentry.io/5316454",
+    dsn: process.env.dsn,
     release: execSync('git rev-parse HEAD').toString()
   },
   webpack(config, options) {

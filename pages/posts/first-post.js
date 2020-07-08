@@ -6,7 +6,7 @@ import * as Sentry from '@sentry/node'
 function notAFunction() {
   let num = 5;
 	try {
-  		num.toUpperCase();		
+  		num.toLowerCase();		
 	} catch (error) {
 		Sentry.captureException(error);
 	}
