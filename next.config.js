@@ -4,7 +4,7 @@ const SentryCliPlugin = require('@sentry/webpack-plugin');
 module.exports = withSourceMaps({
   env: {
     dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
-    release: process.env.VERCEL_GITHUB_COMMIT_SHA
+    release: process.env.VERCEL_GIT_COMMIT_SHA
   },
   webpack(config, options) {
     // https://github.com/getsentry/sentry-javascript/issues/2378
@@ -20,7 +20,7 @@ module.exports = withSourceMaps({
         include: '.next',
         ignore: ['node_modules'],
         urlPrefix: '~/_next',
-        release: process.env.VERCEL_GITHUB_COMMIT_SHA
+        release: process.env.VERCEL_GIT_COMMIT_SHA
       })
     )
     return config
